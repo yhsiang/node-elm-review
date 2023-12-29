@@ -112,7 +112,6 @@ function initElmProject {
 }
 
 function checkFolderContents {
-  is_diff=false
   if [ "$SUBCOMMAND" != "record" ]
   then
     echo -n "  Checking generated files are the same"
@@ -120,13 +119,9 @@ function checkFolderContents {
     then
         echo -e "\x1B[31m  ERROR\n  The generated files are different:\x1B[0m"
         diff -rq "$TMP/$1/" "$SNAPSHOTS/$1/" --exclude="elm-stuff"
-        is_diff=true
     else
       echo -e "  \x1B[92mOK\x1B[0m"
     fi
-  fi
-  if [ "${is_diff}" ]; then
-    exit 1
   fi
 }
 
