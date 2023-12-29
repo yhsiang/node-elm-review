@@ -118,7 +118,8 @@ function checkFolderContents {
     if [ "$(diff -rq "$TMP/$1/" "$SNAPSHOTS/$1/" --exclude="elm-stuff")" != "" ]
     then
         echo -e "\x1B[31m  ERROR\n  The generated files are different:\x1B[0m"
-        diff -rq "$TMP/$1/" "$SNAPSHOTS/$1/" --exclude="elm-stuff"
+        diff "$TMP/$1/" "$SNAPSHOTS/$1/" --exclude="elm-stuff"
+        exit 1
     else
       echo -e "  \x1B[92mOK\x1B[0m"
     fi
